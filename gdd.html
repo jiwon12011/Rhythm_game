@@ -1,0 +1,661 @@
+<title>마요나카☆아쿠아비트 — 기획서 v0.1</title>
+<style>
+:root{
+  --pink:#FF6FAE; --pink-soft:#FFB7D5; --pink-wash:#FFE9F3;
+  --mint:#3ECFBB; --mint-soft:#9BEADF; --mint-wash:#E2F8F4;
+  --gold:#F2B94B; --purple:#8E7CC3;
+  --bg:#FFF6FA; --card:#FFFDFB; --ink:#3A3350; --sub:#8A80A5; --line:#F0DFEA;
+  --shadow:rgba(58,51,80,.14);
+  --n-chip:#9AA3B2; --r-chip:#3ECFBB; --e-chip:#FF6FAE;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --pink:#FF7FB8; --pink-soft:#B85A8C; --pink-wash:#3A2237;
+    --mint:#4FDECB; --mint-soft:#2E6B62; --mint-wash:#1B3833;
+    --gold:#F2C56B; --purple:#A796D6;
+    --bg:#14121F; --card:#1E1B2E; --ink:#F0EBF6; --sub:#A79DC0; --line:#332E48;
+    --shadow:rgba(0,0,0,.45);
+    --n-chip:#7C8494;
+  }
+}
+:root[data-theme="dark"]{
+  --pink:#FF7FB8; --pink-soft:#B85A8C; --pink-wash:#3A2237;
+  --mint:#4FDECB; --mint-soft:#2E6B62; --mint-wash:#1B3833;
+  --gold:#F2C56B; --purple:#A796D6;
+  --bg:#14121F; --card:#1E1B2E; --ink:#F0EBF6; --sub:#A79DC0; --line:#332E48;
+  --shadow:rgba(0,0,0,.45);
+  --n-chip:#7C8494;
+}
+:root[data-theme="light"]{
+  --pink:#FF6FAE; --pink-soft:#FFB7D5; --pink-wash:#FFE9F3;
+  --mint:#3ECFBB; --mint-soft:#9BEADF; --mint-wash:#E2F8F4;
+  --gold:#F2B94B; --purple:#8E7CC3;
+  --bg:#FFF6FA; --card:#FFFDFB; --ink:#3A3350; --sub:#8A80A5; --line:#F0DFEA;
+  --shadow:rgba(58,51,80,.14);
+  --n-chip:#9AA3B2; --r-chip:#3ECFBB; --e-chip:#FF6FAE;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Pretendard,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.72;
+  background-image:radial-gradient(color-mix(in srgb, var(--pink) 14%, transparent) 1.4px, transparent 1.4px);
+  background-size:26px 26px;
+}
+.wrap{max-width:960px;margin:0 auto;padding:56px 20px 120px}
+
+/* ── 헤더 ── */
+header{text-align:center;padding:34px 0 10px}
+.eyebrow{font-size:12px;letter-spacing:.35em;color:var(--sub);font-weight:700}
+h1{
+  font-size:clamp(38px,7vw,64px);font-weight:900;line-height:1.15;margin:14px 0 4px;
+  background:linear-gradient(115deg,var(--pink) 25%,var(--purple) 55%,var(--mint) 85%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  text-wrap:balance;letter-spacing:-.01em;
+}
+.en-title{font-size:15px;letter-spacing:.5em;color:var(--sub);font-weight:700;margin-top:2px}
+.tagline{margin-top:18px;font-size:17px;color:var(--ink);font-weight:600}
+.meta-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:22px}
+.meta-chips span{
+  font-size:12.5px;font-weight:700;padding:6px 14px;border-radius:99px;
+  background:var(--card);border:1.5px solid var(--line);color:var(--sub);
+}
+.meta-chips b{color:var(--pink)}
+
+/* ── 섹션 공통 ── */
+section{margin-top:72px}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:22px}
+.sec-num{
+  font-size:13px;font-weight:900;letter-spacing:.15em;color:var(--card);
+  background:var(--ink);padding:4px 12px;border-radius:99px;flex-shrink:0;
+}
+h2{font-size:26px;font-weight:900;letter-spacing:-.01em}
+h2 small{font-size:13px;font-weight:700;color:var(--sub);letter-spacing:.2em;margin-left:10px}
+.card{
+  background:var(--card);border:2px solid var(--line);border-radius:20px;
+  padding:26px 28px;box-shadow:5px 5px 0 var(--shadow);
+}
+.card + .card{margin-top:16px}
+.label-card{position:relative;margin-top:14px}
+.label-card > .tab{
+  position:absolute;top:-13px;left:20px;font-size:11px;font-weight:800;letter-spacing:.2em;
+  background:var(--pink);color:#fff;padding:3px 12px;border-radius:99px;
+}
+.label-card.mint > .tab{background:var(--mint)}
+.label-card.gold > .tab{background:var(--gold)}
+p.lead{font-size:16.5px}
+p + p{margin-top:12px}
+.sub{color:var(--sub);font-size:14px}
+b.hl{color:var(--pink)} b.hl-m{color:var(--mint)}
+
+/* ── 필러 3개 ── */
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:18px}
+.pillar{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:20px 22px;box-shadow:4px 4px 0 var(--shadow)}
+.pillar .p-tag{font-size:11px;font-weight:800;letter-spacing:.25em;color:var(--mint)}
+.pillar h3{font-size:18px;font-weight:800;margin:6px 0 8px}
+.pillar p{font-size:14px;color:var(--sub);line-height:1.65}
+
+/* ── 세계관 키워드 ── */
+.lore-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px;margin-top:16px}
+.lore{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:20px 22px;box-shadow:4px 4px 0 var(--shadow)}
+.lore h3{font-size:16px;font-weight:800;margin-bottom:6px}
+.lore h3 .jp{font-size:12px;color:var(--sub);font-weight:700;margin-left:6px}
+.lore p{font-size:14px;color:var(--sub);line-height:1.7}
+
+/* ── 밴드 섹션 ── */
+.band{border-radius:24px;border:2.5px solid var(--band, var(--pink));background:var(--card);
+  box-shadow:6px 6px 0 var(--shadow);margin-top:34px;overflow:hidden}
+.band-head{padding:26px 28px 20px;background:linear-gradient(120deg, color-mix(in srgb, var(--band) 16%, var(--card)), var(--card) 70%)}
+.band-genre{font-size:11.5px;font-weight:800;letter-spacing:.28em;color:var(--band)}
+.band-head h3{font-size:30px;font-weight:900;letter-spacing:-.01em;margin:4px 0 2px}
+.band-head h3 .jp{font-size:15px;color:var(--sub);font-weight:700;margin-left:10px;letter-spacing:.06em}
+.band-desc{font-size:14.5px;color:var(--sub);margin-top:8px}
+.band-song{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-size:13px;font-weight:700;
+  background:var(--card);border:1.5px solid var(--band);color:var(--band);border-radius:99px;padding:5px 14px}
+.members{padding:8px 28px 28px;display:grid;gap:26px}
+
+.member{border-top:1.5px dashed var(--line);padding-top:24px}
+.m-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px}
+.m-pos{font-size:11px;font-weight:900;letter-spacing:.12em;background:var(--band);color:#fff;border-radius:8px;padding:3px 9px}
+.m-head h4{font-size:20px;font-weight:900}
+.m-head .jp{font-size:13px;color:var(--sub);font-weight:600}
+.m-head .age{font-size:12.5px;color:var(--sub);margin-left:auto}
+.m-rows{margin-top:10px;display:grid;gap:6px;font-size:14px}
+.m-rows div{display:grid;grid-template-columns:64px 1fr;gap:12px}
+.m-rows dt{font-size:11.5px;font-weight:800;letter-spacing:.12em;color:var(--band);padding-top:3px}
+.m-rows dd{color:var(--ink)}
+.m-rows dd .sub{display:block}
+
+/* ── 컨셉포토 브리프 ── */
+.photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.photo{
+  aspect-ratio:16/9;border-radius:14px;border:2px solid var(--line);position:relative;
+  padding:12px 14px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;
+}
+.photo.n{background:linear-gradient(150deg, color-mix(in srgb, var(--n-chip) 22%, var(--card)), var(--card))}
+.photo.r{background:linear-gradient(150deg, color-mix(in srgb, var(--mint) 26%, var(--card)), var(--card))}
+.photo.e{background:linear-gradient(150deg, color-mix(in srgb, var(--pink) 30%, var(--card)), color-mix(in srgb, var(--gold) 18%, var(--card)))}
+.photo .chip{
+  position:absolute;top:10px;left:10px;font-size:10px;font-weight:900;letter-spacing:.18em;
+  color:#fff;border-radius:6px;padding:2px 8px;
+}
+.photo.n .chip{background:var(--n-chip)} .photo.r .chip{background:var(--mint)} .photo.e .chip{background:var(--pink)}
+.photo h5{font-size:14px;font-weight:800;line-height:1.4}
+.photo p{font-size:12px;color:var(--sub);line-height:1.55;margin-top:3px}
+
+/* ── 케미 노트 ── */
+.chemi{margin-top:30px}
+.chemi ul{list-style:none;display:grid;gap:10px;margin-top:12px}
+.chemi li{font-size:14.5px;padding-left:26px;position:relative}
+.chemi li::before{content:"♪";position:absolute;left:4px;color:var(--pink);font-weight:900}
+
+/* ── 플레이 화면 목업 ── */
+.mock{
+  aspect-ratio:16/9;border-radius:18px;border:2.5px solid var(--ink);position:relative;overflow:hidden;
+  background:
+    radial-gradient(ellipse at 70% 30%, color-mix(in srgb, var(--pink) 42%, #2A2440), transparent 60%),
+    radial-gradient(ellipse at 20% 80%, color-mix(in srgb, var(--mint) 38%, #2A2440), transparent 55%),
+    #221E38;
+  margin-top:18px;box-shadow:6px 6px 0 var(--shadow);
+}
+.mock .bg-label{position:absolute;top:12px;left:16px;font-size:11px;letter-spacing:.2em;color:rgba(255,255,255,.55);font-weight:800}
+.mock .lanes{
+  position:absolute;left:50%;transform:translateX(-50%) perspective(300px) rotateX(28deg);
+  transform-origin:bottom center;bottom:0;width:46%;height:88%;
+  background:rgba(255,255,255,.10);border-left:2px solid rgba(255,255,255,.25);border-right:2px solid rgba(255,255,255,.25);
+  display:grid;grid-template-columns:repeat(4,1fr);
+}
+.mock .lanes i{border-right:1px solid rgba(255,255,255,.14)}
+.mock .lanes i:last-child{border-right:none}
+.mock .judge{position:absolute;left:50%;transform:translateX(-50%);bottom:9%;width:48%;height:5px;border-radius:99px;
+  background:linear-gradient(90deg,var(--pink),var(--gold),var(--mint));box-shadow:0 0 14px var(--pink)}
+.mock .note{position:absolute;width:10%;height:4.5%;border-radius:99px;background:var(--pink);border:2px solid #fff;box-shadow:0 0 10px var(--pink)}
+.mock .note.m{background:var(--mint);box-shadow:0 0 10px var(--mint)}
+.mock .combo{position:absolute;top:16%;left:0;right:0;text-align:center;color:#fff;font-weight:900;font-size:clamp(20px,4vw,34px);text-shadow:0 0 16px var(--pink)}
+.mock .combo small{display:block;font-size:11px;letter-spacing:.4em;color:var(--pink-soft)}
+.mock .cutin{position:absolute;right:3%;bottom:14%;background:rgba(255,255,255,.94);color:#3A3350;font-size:12px;font-weight:800;
+  border-radius:14px 14px 3px 14px;padding:7px 12px;border:2px solid #3A3350}
+.mock .char{position:absolute;left:4%;bottom:0;width:17%;height:64%;border-radius:12px 12px 0 0;
+  background:linear-gradient(180deg, color-mix(in srgb, var(--pink) 55%, transparent), transparent);
+  border:1.5px dashed rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,.75);font-size:11px;font-weight:800;letter-spacing:.1em;text-align:center}
+.mock-note{font-size:13px;color:var(--sub);margin-top:12px}
+
+/* ── 테이블 ── */
+.tbl-wrap{overflow-x:auto;margin-top:16px}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+th{font-size:11.5px;font-weight:800;letter-spacing:.14em;color:var(--sub);text-align:left;padding:10px 14px;border-bottom:2px solid var(--line)}
+td{padding:12px 14px;border-bottom:1.5px solid var(--line);vertical-align:top}
+td b{font-weight:800}
+tr:last-child td{border-bottom:none}
+.num{font-variant-numeric:tabular-nums}
+.chip-inline{font-size:10.5px;font-weight:900;letter-spacing:.12em;color:#fff;border-radius:6px;padding:2px 8px;white-space:nowrap}
+.chip-inline.n{background:var(--n-chip)} .chip-inline.r{background:var(--mint)} .chip-inline.e{background:var(--pink)}
+
+/* ── 추천 박스 ── */
+.reco{border:2.5px solid var(--mint);background:var(--mint-wash);border-radius:18px;padding:20px 24px;margin-top:16px}
+.reco .r-tag{font-size:11px;font-weight:900;letter-spacing:.25em;color:var(--mint)}
+.reco p{font-size:14.5px;margin-top:6px}
+
+/* ── 결정 대기 ── */
+.open-q{display:grid;gap:12px;margin-top:16px}
+.open-q .q{background:var(--card);border:2px solid var(--line);border-left:6px solid var(--gold);border-radius:14px;padding:16px 20px;font-size:14.5px}
+.open-q .q b{display:block;font-size:15px;margin-bottom:3px}
+
+/* ── 로드맵 ── */
+.roadmap{display:grid;gap:0;margin-top:18px}
+.phase{display:grid;grid-template-columns:110px 1fr;gap:18px;padding:18px 6px;border-bottom:1.5px dashed var(--line)}
+.phase:last-child{border-bottom:none}
+.phase .ph{font-size:13px;font-weight:900;color:var(--pink);letter-spacing:.08em}
+.phase .ph small{display:block;font-weight:700;color:var(--sub);letter-spacing:0}
+.phase ul{list-style:none;display:grid;gap:5px;font-size:14px}
+.phase li::before{content:"◆";font-size:8px;color:var(--mint);margin-right:8px;vertical-align:2px}
+
+footer{margin-top:80px;text-align:center;font-size:12.5px;color:var(--sub);letter-spacing:.1em}
+
+@media (max-width:560px){
+  .card{padding:20px 18px}
+  .members{padding:8px 18px 22px}
+  .band-head{padding:22px 18px 16px}
+  .m-rows div{grid-template-columns:1fr;gap:2px}
+  .phase{grid-template-columns:1fr;gap:6px}
+}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">GAME DESIGN DOCUMENT · v0.1 · 2026.07.06</div>
+  <h1>마요나카☆아쿠아비트</h1>
+  <div class="en-title">MIDNIGHT AQUA BEAT · 真夜中☆アクアビート</div>
+  <p class="tagline">“밤 12시, 폐수족관의 수조에 다시 불이 켜진다 — 물고기 대신, 소녀들이 빛난다.”</p>
+  <div class="meta-chips">
+    <span>장르 <b>밴드 리듬게임 × 캐릭터 수집</b></span>
+    <span>플랫폼 <b>웹 / PWA</b></span>
+    <span>화면 <b>가로 16:9</b></span>
+    <span>레인 <b>4레인 낙하식</b></span>
+    <span>톤 <b>핑크 × 민트 네온</b></span>
+  </div>
+</header>
+
+<!-- ───────────────────────── 1. 컨셉 ───────────────────────── -->
+<section>
+  <div class="sec-head"><span class="sec-num">01</span><h2>컨셉 <small>CONCEPT</small></h2></div>
+  <div class="card">
+    <p class="lead"><b class="hl">내 최애 밴드 멤버를 모으고, 키우고, 그 아이의 “컨셉포토” 속에서 라이브를 뛰는 리듬게임.</b></p>
+    <p>일반 리듬게임의 보상은 점수지만, 이 게임의 보상은 <b>캐릭터의 반응과 캐릭터의 사진</b>이다. 라이브를 잘할수록 최애가 나를 보고 웃고, 최애를 키울수록 무대 배경이 그 아이의 세계로 물든다. “게임을 잘하는 것”과 “덕질이 깊어지는 것”이 완전히 같은 방향을 향하도록 설계한다.</p>
+  </div>
+  <div class="pillars">
+    <div class="pillar">
+      <div class="p-tag">PILLAR 01</div>
+      <h3>최애가 반응한다</h3>
+      <p>콤보 컷인, 풀콤보 전용 대사, 랭크별 결과 리액션. 플레이의 모든 순간에 “최애가 나를 지켜보고 있다”는 감각을 심는다.</p>
+    </div>
+    <div class="pillar">
+      <div class="p-tag">PILLAR 02</div>
+      <h3>수집이 무대가 된다</h3>
+      <p>모은 캐릭터의 컨셉포토(N/R/E 3장)가 곧 라이브 배경. 수집품이 진열장에 갇히지 않고 플레이 화면 자체를 바꾼다.</p>
+    </div>
+    <div class="pillar">
+      <div class="p-tag">PILLAR 03</div>
+      <h3>서사가 갈고리다</h3>
+      <p>12명 전원에게 갭모에 · 트라우마 · 밴드 간 얽힌 관계를 부여. “한 명 파기 시작하면 열두 명을 다 파게 되는” 구조.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────── 2. 세계관 ───────────────────────── -->
+<section>
+  <div class="sec-head"><span class="sec-num">02</span><h2>세계관 <small>WORLD</small></h2></div>
+  <div class="card">
+    <p class="lead">바닷가 도시 <b class="hl">유메가오카(夢ヶ丘)</b>는 한때 “음악의 성지”라 불렸다. 그러나 거대 엔터테인먼트 기업 <b>에테르노(ETERNO)</b>가 청취자의 감정을 자동 조율하는 AI 음원 시스템 <b>MUSE</b>를 보급한 뒤, 사람들은 더 이상 라이브를 보러 가지 않는다. 완벽한 음악이 24시간 귓속으로 배달되는 시대 — 도시의 라이브하우스는 하나둘 셔터를 내렸다.</p>
+    <p>주인공(플레이어)은 돌아가신 할아버지에게 낡은 건물 하나를 상속받는다. 폐관한 수족관을 개조한 라이브하우스, <b class="hl-m">「쿠라게 창고(クラゲ倉庫)」</b>. 수조는 비었지만 조명 설비만은 기이할 만큼 완벽하게 정비되어 있고, 유언장에는 단 한 줄이 적혀 있다.</p>
+    <p style="text-align:center;font-weight:800;font-size:16px;padding:8px 0">“밤 12시에 무대 조명을 켜라. <b class="hl">도키메키</b>는 빛이 되어 돌아온다.”</p>
+    <p>무대에서 진심의 연주가 울릴 때, 관객의 설렘(도키메키)은 <b>눈에 보이는 빛</b>이 되어 텅 빈 수조를 채운다 — 마치 해파리 떼처럼. 플레이어는 이 도시에 남은 마지막 소녀 밴드들을 스카우트해, 죽어가는 라이브 문화를 되살리는 <b>심야 라이브하우스의 점장</b>이 된다.</p>
+  </div>
+  <div class="lore-grid">
+    <div class="lore"><h3>쿠라게 창고 <span class="jp">クラゲ倉庫</span></h3><p>폐수족관을 개조한 심야 라이브하우스이자 게임의 홈 화면. 거대한 원통 수조가 무대를 둘러싸고 있으며, 라이브 성과(도키메키)가 쌓일수록 수조 속 빛 해파리가 늘어난다 — 수조가 곧 계정 레벨의 시각화.</p></div>
+    <div class="lore"><h3>바다의 이름 규칙 <span class="jp">海の名前</span></h3><p>“이 무대에 서는 밴드는 바다 생물의 이름을 갖는다” — 할아버지가 남긴 무대의 전통. 클리오네(바다의 천사), 네온테트라, 노크틸루카(야광충)… 밴드명 하나하나가 세계관의 디테일이 된다.</p></div>
+    <div class="lore"><h3>에테르노 & 세라프 <span class="jp">ETERNO / SERAPH</span></h3><p>도시를 지배하는 음악 기업과, 그들이 내세운 “결점 없는” 버추얼 아이돌 세라프. 세라프의 목소리에는 비밀이 있다 — 네온테트라의 보컬 레이카에게서 <b>빼앗은 목소리</b>라는 것. 메인 스토리의 최종 대립축.</p></div>
+    <div class="lore"><h3>도키메키 = 빛 <span class="jp">ときめき</span></h3><p>진심의 연주가 만드는 설렘은 물리적인 빛으로 나타난다. 게임플레이의 콤보 이펙트 · 배경의 발광 · 수조의 해파리가 전부 이 설정 하나로 연결된다. “콤보가 쌓이면 무대가 밝아진다”는 연출의 세계관적 근거.</p></div>
+  </div>
+</section>
+
+<!-- ───────────────────────── 3. 밴드 & 캐릭터 ───────────────────────── -->
+<section>
+  <div class="sec-head"><span class="sec-num">03</span><h2>밴드 & 캐릭터 <small>3 BANDS · 12 MEMBERS</small></h2></div>
+  <p class="sub">모든 컨셉포토는 <b>16:9 (2560×1440 권장)</b>. NORMAL=일상 · RARE=밴드/연습 · EPIC=라이브 무대의 결정적 순간이라는 3단 서사로 통일한다. 사진 3장을 순서대로 보면 그 캐릭터의 “하루”와 “성장”이 읽히도록.</p>
+
+  <!-- ═════════ BAND 1 ═════════ -->
+  <div class="band" style="--band:#FF6FAE">
+    <div class="band-head">
+      <div class="band-genre">BAND 01 · 왕도 청춘 팝록 · 이미지 컬러 PINK</div>
+      <h3>클리오네☆팝! <span class="jp">クリオネ☆ポップ! · Clione Pop!</span></h3>
+      <p class="band-desc">“바다의 천사” 클리오네에서 딴 이름의 간판 밴드. 방과후의 반짝임을 그대로 무대에 올린 듯한 스트레이트 청춘 사운드. 스토리의 시작점이자 튜토리얼 밴드 — 플레이어가 처음 스카우트하는 팀.</p>
+      <span class="band-song">♪ 대표곡 「하트비트 퍼레이드」 · BPM 132</span>
+    </div>
+    <div class="members">
+
+      <article class="member">
+        <div class="m-head"><span class="m-pos">Vo / Gt · 리더</span><h4>아마네 히나타</h4><span class="jp">天音ひなた · Amane Hinata</span><span class="age">17세 · 고2</span></div>
+        <dl class="m-rows">
+          <div><dt>외형</dt><dd>벚꽃핑크 세미롱에 노란 별 헤어핀, 큰 청록 눈. 교복 위에 오버사이즈 핑크 카디건, 스트랩에 스티커 잔뜩 붙은 화이트 텔레캐스터.</dd></div>
+          <div><dt>성격</dt><dd>태양 그 자체인 무한 긍정 돌격대장. 밴드를 만든 것도, 쿠라게 창고 문을 처음 두드린 것도 이 아이.</dd></div>
+          <div><dt>서사</dt><dd>중학생 때 첫 무대에서 얼어붙어 한 소절도 못 부르고 내려온 과거. 그날 관객석에서 비웃지 않고 끝까지 박수 쳐준 단 한 사람이 소꿉친구 레이라(노크틸루카)였다.</dd></div>
+          <div><dt>갭모에</dt><dd>무대 뒤에서는 지금도 손이 떨린다. 픽을 쥐면 멈춘다.</dd></div>
+        </dl>
+        <div class="photos">
+          <div class="photo n"><span class="chip">NORMAL</span><h5>방과후의 창가</h5><p>석양 드는 교실, 창가에서 기타 케이스를 끌어안고 활짝 웃는 모습. 따뜻한 오렌지 역광 + 분필가루 빛입자.</p></div>
+          <div class="photo r"><span class="chip">RARE</span><h5>첫 리허설</h5><p>쿠라게 창고 무대, 마이크 스탠드 높이를 맞추는 옆모습. 빈 수조의 민트빛 조명이 뺨에 어른거린다. 긴장 반 설렘 반의 표정.</p></div>
+          <div class="photo e"><span class="chip">EPIC</span><h5>퍼레이드의 한가운데</h5><p>라이브 절정, 점프하며 픽 쥔 손을 하늘로. 핑크 스포트라이트 + 관객 펜라이트 물결 + 흩날리는 빛 해파리. 떨림을 이겨낸 소녀의 만개.</p></div>
+        </div>
+      </article>
+
+      <article class="member">
+        <div class="m-head"><span class="m-pos">Key</span><h4>시라토리 유키</h4><span class="jp">白鳥ゆき · Shiratori Yuki</span><span class="age">17세 · 고2</span></div>
+        <dl class="m-rows">
+          <div><dt>외형</dt><dd>은백발 롱스트레이트, 사파이어색 눈, 자세가 곧은 오죠사마. 리본 블라우스에 클래식한 감색 원피스, 손목에 어울리지 않는 형광 스트랩.</dd></div>
+          <div><dt>성격</dt><dd>완벽한 경어체의 아가씨. 국제 콩쿠르 입상 경력의 피아노 영재였지만 “정답이 정해진 음악”에 숨이 막혀 탈주했다.</dd></div>
+          <div><dt>서사</dt><dd>부모가 에테르노의 임원. 그녀가 무대에 서는 것 자체가 집안과의 조용한 전쟁이다.</dd></div>
+          <div><dt>갭모에</dt><dd>지독한 정크푸드 중독. 컵라면을 “이 배덕의 맛…”이라며 경건하게 먹는다.</dd></div>
+        </dl>
+        <div class="photos">
+          <div class="photo n"><span class="chip">NORMAL</span><h5>배덕의 만찬</h5><p>대저택 그랜드피아노 위에 몰래 컵라면을 올려두고 주위를 살피는 모습. 샹들리에의 차가운 빛과 라면의 김이 대비.</p></div>
+          <div class="photo r"><span class="chip">RARE</span><h5>두 개의 건반</h5><p>연습실에서 신스 2단 스택을 진지하게 조율하는 옆얼굴. 악보 귀퉁이엔 히나타가 그려준 낙서. 푸른 새벽빛.</p></div>
+          <div class="photo e"><span class="chip">EPIC</span><h5>백조, 활공</h5><p>무대 위 글리산도의 순간, 은백발이 날개처럼 펼쳐진다. 파랑→핑크로 넘어가는 스포트라이트, 건반 위로 튀는 빛방울.</p></div>
+        </div>
+      </article>
+
+      <article class="member">
+        <div class="m-head"><span class="m-pos">Ba</span><h4>모모세 아카리</h4><span class="jp">百瀬あかり · Momose Akari</span><span class="age">18세 · 고3</span></div>
+        <dl class="m-rows">
+          <div><dt>외형</dt><dd>플래티넘 금발 롱웨이브 갸루, 태닝 피부, 화려한 네일. 교복은 최대한 루즈하게, 새빨간 재즈 베이스.</dd></div>
+          <div><dt>성격</dt><dd>밴드의 분위기 메이커이자 언니 포지션. 누구에게든 3초 만에 친해지는 커뮤력.</dd></div>
+          <div><dt>서사</dt><dd>사실 전교 1등. “공부 잘하는 갸루”가 아니라 “갸루인 걸 들키면 안 되는 모범생”이 아니라, 둘 다 진짜인 게 포인트. 노력을 들키는 걸 촌스럽다고 여긴다.</dd></div>
+          <div><dt>갭모에</dt><dd>안경 쓰고 문제집 푸는 모습은 멤버들만 아는 비밀.</dd></div>
+        </dl>
+        <div class="photos">
+          <div class="photo n"><span class="chip">NORMAL</span><h5>비밀 자습</h5><p>패스트푸드점 구석자리, 베이스를 옆에 세워두고 안경 쓴 채 문제집을 푸는 중. 트레이로 슬쩍 가리는 손. 창밖은 네온 초저녁.</p></div>
+          <div class="photo r"><span class="chip">RARE</span><h5>네일 & 슬랩</h5><p>스튜디오에서 새로 한 네일을 자랑하며 슬랩 베이스를 튕기는 클로즈업. 스트로베리 핑크 앰프 불빛.</p></div>
+          <div class="photo e"><span class="chip">EPIC</span><h5>맨 앞줄의 여왕</h5><p>무대 최전방, 관객과 하이파이브하며 연주를 이어가는 순간. 골드 조명 + 금발이 조명을 받아 후광처럼.</p></div>
+        </div>
+      </article>
+
+      <article class="member">
+        <div class="m-head"><span class="m-pos">Dr · 막내</span><h4>코즈에 마치</h4><span class="jp">梢まち · Kozue Machi</span><span class="age">15세 · 중3</span></div>
+        <dl class="m-rows">
+          <div><dt>외형</dt><dd>밤색 보브, 항상 반쯤 감긴 눈, 상어 후드집업(등에 지느러미). 몸집은 제일 작은데 앉는 자리는 제일 크다(드럼).</dd></div>
+          <div><dt>성격</dt><dd>말수 제로의 쿨데레. 대답은 “응”, “아니”, “배고파” 3종. 하지만 리듬에 관해서는 밴드 최강의 절대감각.</dd></div>
+          <div><dt>서사</dt><dd>히나타가 공원에서 벤치를 두드리던 마치를 보고 즉석 스카우트. 본인은 “두드릴 게 커져서 좋다”는 이유로 승낙.</dd></div>
+          <div><dt>갭모에</dt><dd>상어 인형 “사메지마 씨” 없이는 잠들지 못한다.</dd></div>
+        </dl>
+        <div class="photos">
+          <div class="photo n"><span class="chip">NORMAL</span><h5>옥상의 낮잠</h5><p>학교 옥상, 상어 인형을 베고 낮잠. 가방에서 삐져나온 드럼 스틱 한 쌍. 구름 그림자가 천천히 지나가는 한낮.</p></div>
+          <div class="photo r"><span class="chip">RARE</span><h5>무표정 트릭</h5><p>드럼 세트 뒤에서 무표정한 얼굴로 스틱 트위스트를 돌리는 순간 포착. 스틱만 모션블러, 얼굴은 정지.</p></div>
+          <div class="photo e"><span class="chip">EPIC</span><h5>사메지마 소나타</h5><p>드럼 솔로 클라이맥스, 후드가 벗겨지며 처음 보이는 활짝 웃는 얼굴. 스틱 잔상이 원을 그리고 심벌에서 빛이 터진다.</p></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <!-- ═════════ BAND 2 ═════════ -->
+  <div class="band" style="--band:#3ECFBB">
+    <div class="band-head">
+      <div class="band-genre">BAND 02 · 사이버 일렉트로 록 · 이미지 컬러 MINT</div>
+      <h3>네온테트라 <span class="jp">ネオンテトラ · NEON TETRA</span></h3>
+      <p class="band-desc">신스와 기계음, 그리고 그 위에 얹히는 처절하게 인간적인 목소리. 에테르노의 심장부에 가장 가까이 있었던 자들이 모인, 반격의 일렉트로 밴드. 메인 스토리의 핵심 축.</p>
+      <span class="band-song">♪ 대표곡 「오버클록 러버즈」 · BPM 150</span>
+    </div>
+    <div class="members">
+
+      <article class="member">
+        <div class="m-head"><span class="m-pos">Vo / Synth · 리더</span><h4>레이카</h4><span class="jp">澪華 · REIKA</span><span class="age">19세</span></div>
+        <dl class="m-rows">
+          <div><dt>외형</dt><dd>민트 보브컷, 왼눈 밑 데이터코드 문신 스티커, 목에 건 홀로그램 헤드폰. 오버사이즈 MA-1에 형광 라인.</dd></div>
+          <div><dt>성격</dt><dd>냉정하고 직설적. 하지만 노래 얘기만 나오면 말이 빨라진다.</dd></div>
+          <div><dt>서사</dt><dd><b>버추얼 아이돌 세라프의 목소리 원본 제공자.</b> 17세에 “목소리 데이터 제공 계약”에 서명했고, 그 목소리는 이제 세라프의 것이 되어 본인은 공식적으로 노래할 권리를 잃었다. 자신의 목소리를 되찾기 위해 무대에 선다 — 이 게임에서 가장 무거운 서사.</dd></div>
+          <div><dt>갭모에</dt><dd>노래방 점수 100점에 비정상적으로 집착한다. “내 목소리가 진짜라는 증거”라서.</dd></div>
+        </dl>
+        <div class="photos">
+          <div class="photo n"><span class="chip">NORMAL</span><h5>새벽 2시의 자판기</h5><p>심야 편의점 앞, 네온 간판 아래에서 캔커피를 든 채 이어폰으로 뭔가를 듣는 옆모습. 화면 속엔 세라프의 광고 전광판이 멀리 보인다.</p></div>
+          <div class="photo r"><span class="chip">RARE</span><h5>목소리의 실험실</h5><p>케이블이 정글처럼 얽힌 작업실에서 보코더 마이크에 입을 대는 순간. 모니터의 파형이 민트색으로 출렁인다.</p></div>
+          <div class="photo e"><span class="chip">EPIC</span><h5>원본 대 복제</h5><p>무대 위, 도시 전광판 속 세라프의 홀로그램과 정면으로 마주 보며 노래하는 실루엣. 민트 레이저가 둘 사이를 가른다. “진짜 목소리”가 이기는 순간.</p></div>
+        </div>
+      </article>
+
+      <article class="member">
+        <div class="m-head"><span class="m-pos">Gt</span><h4>우즈키 카나데</h4><span class="jp">卯月奏 · Uzuki Kanade</span><span class="age">18세</span></div>
+        <dl class="m-rows">
+          <div><dt>외형</dt><dd>다크민트 롱헤어(늘 헝클), 진한 다크서클, 고양이 그림 오버사이즈 파카. 후드를 눈까지 눌러쓴다.</dd></div>
+          <div><dt>성격</dt><dd>사람 눈을 못 보는 은둔형 게임폐인. 오프라인에선 목소리가 모기만 한데—</dd></div>
+          <div><dt>서사</dt><dd>온라인에선 연주 영상 조회수 천만의 전설 기타리스트 <b>“K4NADE”</b>. 정체를 아는 건 멤버뿐. 레이카가 반년간 DM을 보내 끌어냈다.</dd></div>
+          <div><dt>갭모에</dt><dd>기타를 잡는 순간만 후드를 벗는다. 그 순간의 눈빛은 딴사람.</dd></div>
+        </dl>
+        <div class="photos">
+          <div class="photo n"><span class="chip">NORMAL</span><h5>요새의 주인</h5><p>모니터 3대의 불빛만 있는 어두운 방, 과자봉지 산맥 너머로 기타 6대가 벽에 걸려 있다. 의자 위에서 무릎을 안은 실루엣.</p></div>
+          <div class="photo r"><span class="chip">RARE</span><h5>구석의 초절기교</h5><p>스튜디오 구석, 파카 차림 그대로 고개를 숙인 채 양손 태핑. 손가락만 조명을 받아 빛난다.</p></div>
+          <div class="photo e"><span class="chip">EPIC</span><h5>후드, 벗다</h5><p>무대 한가운데서 후드를 벗어젖히고 픽업이 민트색으로 발광하는 기타 솔로. 바람에 날리는 머리카락, 처음으로 정면을 보는 눈.</p></div>
+        </div>
+      </article>
+
+      <article class="member">
+        <div class="m-head"><span class="m-pos">Ba / 엔지니어</span><h4>진구지 마리카</h4><span class="jp">神宮寺鞠花 · Jinguji Marika</span><span class="age">19세</span></div>
+        <dl class="m-rows">
+          <div><dt>외형</dt><dd>라벤더 사이드테일, 작업용 고글을 머리에 걸치고 허리엔 공구벨트. 교복 조끼 위에 작업 점퍼라는 미스매치 패션.</dd></div>
+          <div><dt>성격</dt><dd>재벌가 외동딸이자 중증 테크덕후. 용돈을 전부 부품에 쓴다. 말끝마다 “스펙이 낭만이야”.</dd></div>
+          <div><dt>서사</dt><dd>가업(에테르노 협력사)을 잇기 싫어서, 회사가 만드는 “완제품 음악”에 맞서 <b>전부 수제 개조 장비</b>로 무대에 선다. 밴드의 음향·조명 설비도 전부 그녀의 작품.</dd></div>
+          <div><dt>갭모에</dt><dd>기계는 천재적으로 다루지만 요리는 재난 수준. 라면도 태운다.</dd></div>
+        </dl>
+        <div class="photos">
+          <div class="photo n"><span class="chip">NORMAL</span><h5>부품가의 헌터</h5><p>전자상가 골목, 양손 가득 부품 봉지를 들고 진열장에 코를 박은 모습. 형광 간판이 고글에 반사.</p></div>
+          <div class="photo r"><span class="chip">RARE</span><h5>수술 중</h5><p>작업대 위에 분해된 베이스, 고글을 내려쓰고 납땜하는 진지한 얼굴. 인두 끝의 주황 불빛과 민트 LED 스트립.</p></div>
+          <div class="photo e"><span class="chip">EPIC</span><h5>풀커스텀 기동</h5><p>무대에서 자작 LED 베이스가 비트에 맞춰 발광, 등 뒤 이퀄라이저 패널이 연주와 실시간 연동. “스펙이 낭만”이 증명되는 순간.</p></div>
+        </div>
+      </article>
+
+      <article class="member">
+        <div class="m-head"><span class="m-pos">Dr (전자드럼) · 막내</span><h4>아지사이 스이</h4><span class="jp">紫陽花すい · Ajisai Sui</span><span class="age">16세</span></div>
+        <dl class="m-rows">
+          <div><dt>외형</dt><dd>회청색 숏컷, 감정이 읽히지 않는 반쯤 뜬 눈, 목에 초커형 LED. 항상 같은 디자인의 옷을 “7벌 갖고 있다”고 주장.</dd></div>
+          <div><dt>성격</dt><dd>기계처럼 정확한 말투와 BPM 오차 0의 연주 탓에 “쟤 사실 로봇 아니냐”가 밴드 공식 밈. 본인은 부정도 긍정도 하지 않는다.</dd></div>
+          <div><dt>서사</dt><dd>감정 표현이 서툴러 학교에서 겉돌던 아이. 마리카가 만든 전자드럼을 처음 두드린 날, “소리가 대신 말해준다”는 걸 알았다.</dd></div>
+          <div><dt>갭모에</dt><dd>고양이 앞에서만 표정이 완전히 붕괴된다.</dd></div>
+        </dl>
+        <div class="photos">
+          <div class="photo n"><span class="chip">NORMAL</span><h5>표정 붕괴 관측 기록</h5><p>가전매장 TV 코너, 고양이 영상 앞에서 무표정을 유지하려다 실패하는 순간(홍조+떨리는 입꼬리). 화면 빛이 얼굴을 비춘다.</p></div>
+          <div class="photo r"><span class="chip">RARE</span><h5>그리드 위의 연습</h5><p>8각 전자드럼 패드에 둘러싸여 메트로놈 앱과 함께 연습. 패드에 민트색 격자 이펙트, 완벽한 좌우대칭 구도.</p></div>
+          <div class="photo e"><span class="chip">EPIC</span><h5>오차 0의 미소</h5><p>라이브에서 양옆 모니터에 파형이 폭발하는 가운데, 아주 살짝 — 확실하게 — 웃는 순간. 이 사진에서만 볼 수 있는 표정.</p></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <!-- ═════════ BAND 3 ═════════ -->
+  <div class="band" style="--band:#8E7CC3">
+    <div class="band-head">
+      <div class="band-genre">BAND 03 · 고딕 심포닉 록 · 이미지 컬러 DEEP PURPLE × CRIMSON PINK</div>
+      <h3>노크틸루카 <span class="jp">ノクチルカ · NOCTILUCA</span></h3>
+      <p class="band-desc">이름의 유래는 밤바다를 빛내는 야광충. 장엄한 스트링 신스와 묵직한 리프, 그리고 연극적인 무대. 셋리스트의 마지막을 장식하는 “밤의 밴드” — 중2병과 진심 사이의 아슬아슬한 미학.</p>
+      <span class="band-song">♪ 대표곡 「심해 녹턴」 · BPM 168</span>
+    </div>
+    <div class="members">
+
+      <article class="member">
+        <div class="m-head"><span class="m-pos">Vo · 리더</span><h4>쿠레나이 요루</h4><span class="jp">紅夜 · Kurenai Yoru</span><span class="age">20세</span></div>
+        <dl class="m-rows">
+          <div><dt>외형</dt><dd>칠흑 롱헤어에 크림슨핑크 이너컬러, 붉은 눈(컬러렌즈), 레이스 고딕 드레스에 초커. 무대 위 존재감은 12명 중 최강.</dd></div>
+          <div><dt>성격</dt><dd>자칭 “밤의 여왕”. 1인칭은 ‘나(와라와)’, 모든 발언이 연극조. 하지만 그 중2병은 연기가 아니라 <b>전력을 다한 진심</b>이다.</dd></div>
+          <div><dt>서사</dt><dd>낮에는 편의점 알바생 “쿠레나이 씨”. 시급으로 의상비를 버는 완벽한 서민이다. 밤의 여왕과 계산대의 존댓말 사이의 낙차가 그녀의 전부 — 그리고 그걸 부끄러워하지 않는 게 그녀의 멋.</dd></div>
+          <div><dt>갭모에</dt><dd>단골 손님이 라이브에 오면 다음 날 계산대에서 귀까지 빨개진다.</dd></div>
+        </dl>
+        <div class="photos">
+          <div class="photo n"><span class="chip">NORMAL</span><h5>여왕의 낮 근무</h5><p>편의점 유니폼 + 명찰 “쿠레나이”, 계산대에서 어색하게 정중한 미소. 창밖은 눈부신 한낮 — 밤의 여왕에게 가장 가혹한 시간.</p></div>
+          <div class="photo r"><span class="chip">RARE</span><h5>월하의 리허설</h5><p>촛대와 벨벳 소파가 놓인 연습실, 장미가 감긴 마이크 스탠드 앞에서 눈을 감고 발성. 촛불의 주황과 보라 조명의 대비.</p></div>
+          <div class="photo e"><span class="chip">EPIC</span><h5>밤이 무릎 꿇는 시간</h5><p>무대 중앙, 심홍 스포트라이트 아래 망토를 펼치며 하이노트를 지르는 순간. 배경의 수조가 공명하듯 진홍빛으로 물든다.</p></div>
+        </div>
+      </article>
+
+      <article class="member">
+        <div class="m-head"><span class="m-pos">Gt</span><h4>아야츠키 레이라</h4><span class="jp">綾月レイラ · Ayatsuki Leila</span><span class="age">19세</span></div>
+        <dl class="m-rows">
+          <div><dt>외형</dt><dd>바이올렛 그라데이션 포니테일, 날카로운 금안, 다크 밀리터리풍 무대의상. 새하얀 플라잉V.</dd></div>
+          <div><dt>성격</dt><dd>독설 츤데레. 연습량은 12명 중 압도적 1위인데 “재능이야”라고 말하고 다닌다.</dd></div>
+          <div><dt>서사</dt><dd>메이저 데뷔 직전의 밴드에서 “음악성 차이”로 탈퇴한 천재. 그리고 <b>히나타(클리오네☆팝!)의 소꿉친구</b> — 얼어붙은 히나타의 첫 무대에서 끝까지 박수를 친 사람. 지금은 서로 라이벌인 척하지만, 서로의 라이브는 한 번도 빠짐없이 보러 간다.</dd></div>
+          <div><dt>갭모에</dt><dd>히나타 얘기가 나오면 솔로가 0.5초 빨라진다.</dd></div>
+        </dl>
+        <div class="photos">
+          <div class="photo n"><span class="chip">NORMAL</span><h5>음악실의 잔향</h5><p>방과후 음악실에서 혼자 클래식 기타를 퉁기며 창밖을 보는 모습. 책상 위엔 찢다 만 옛 밴드의 스티커.</p></div>
+          <div class="photo r"><span class="chip">RARE</span><h5>거울과의 승부</h5><p>전신거울 앞 연습, 이마에 땀, 벽에는 포스터를 떼어낸 자국만 남아 있다. “재능”의 실체가 담긴 한 장.</p></div>
+          <div class="photo e"><span class="chip">EPIC</span><h5>월광 소나타, 개화</h5><p>무대 끝에서 무릎을 꿇고 활처럼 몸을 젖히는 기타 솔로. 보라 레이저가 부챗살로 퍼지고 플라잉V가 달빛처럼 빛난다.</p></div>
+        </div>
+      </article>
+
+      <article class="member">
+        <div class="m-head"><span class="m-pos">Ba</span><h4>스미레</h4><span class="jp">菫 · Sumire</span><span class="age">21세</span></div>
+        <dl class="m-rows">
+          <div><dt>외형</dt><dd>신장 180cm, 흑자색 초장발 스트레이트, 속눈썹 긴 무표정 미인. 앤티크 드레스, 팔에는 항상 낡은 인형 “클라라”.</dd></div>
+          <div><dt>성격</dt><dd>말을 거의 하지 않는다. 의사표현은 클라라를 통해(“…클라라가 좋대”). 무대 위 존재감은 침묵 그 자체로 압도적.</dd></div>
+          <div><dt>서사</dt><dd>과거는 멤버도 모른다. 다만 요루가 심야 공원에서 혼자 베이스를 치던 그녀를 “밤의 주민”으로 알아보고 데려왔다.</dd></div>
+          <div><dt>갭모에</dt><dd>SNS 비공개 계정에서는 하루 50개씩 포스팅하는 초수다쟁이. 팔로워는 멤버 3명뿐.</dd></div>
+        </dl>
+        <div class="photos">
+          <div class="photo n"><span class="chip">NORMAL</span><h5>클라라와 쇼윈도</h5><p>앤티크 인형가게 앞, 쇼윈도의 인형과 클라라를 마주 보게 들어주는 모습. 유리 반사 너머로 살짝 부드러운 눈.</p></div>
+          <div class="photo r"><span class="chip">RARE</span><h5>2인 연습</h5><p>소파에 클라라를 앉혀 “관객 1명”을 만들어 두고 베이스를 연습하는 밤. 스탠드 조명 하나만 켜진 방.</p></div>
+          <div class="photo e"><span class="chip">EPIC</span><h5>침묵의 저음</h5><p>무대에서 머리카락이 중력을 잊은 듯 흩날리는 로우 포지션의 순간. 창백한 달빛 조명, 발밑에서 피어오르는 안개.</p></div>
+        </div>
+      </article>
+
+      <article class="member">
+        <div class="m-head"><span class="m-pos">Dr / 작곡 · 막내</span><h4>후유츠키 칸나</h4><span class="jp">冬月栞奈 · Fuyutsuki Kanna</span><span class="age">18세</span></div>
+        <dl class="m-rows">
+          <div><dt>외형</dt><dd>남색 양갈래 땋은머리, 동그란 안경, 카디건에 책을 안고 다니는 문학소녀. 무대에서는 안경을 벗는다.</dd></div>
+          <div><dt>성격</dt><dd>소심하고 말을 더듬는데, 노크틸루카의 과격하고 장엄한 곡과 가사는 <b>전부 그녀가 쓴다.</b></dd></div>
+          <div><dt>서사</dt><dd>정체는 은퇴 선언 후 소식이 끊긴 전설의 보카로P <b>“심해P(深海P)”</b>. 조회수 뒤에 숨는 게 편했던 그녀를 요루가 “그대의 밤을 무대에서 연주하라”며 끌어냈다. 레이카(네온테트라)는 심해P의 열렬한 팬으로, 정체를 모른 채 칸나 앞에서 심해P 찬양을 늘어놓곤 한다.</dd></div>
+          <div><dt>갭모에</dt><dd>자기 곡이 연주되는 동안만은 누구보다 사나운 얼굴이 된다.</dd></div>
+        </dl>
+        <div class="photos">
+          <div class="photo n"><span class="chip">NORMAL</span><h5>도서관 구석의 작사가</h5><p>도서관 가장 안쪽 자리, 두꺼운 책 뒤에 숨어 노트에 가사를 적는 모습. 헤드폰에서 새는 폭음과 고요한 서가의 대비.</p></div>
+          <div class="photo r"><span class="chip">RARE</span><h5>심해 4시</h5><p>새벽 4시의 DAW 작업 화면 앞, 모니터 불빛이 안경에 반사되어 눈이 보이지 않는다. 책상엔 식은 코코아.</p></div>
+          <div class="photo e"><span class="chip">EPIC</span><h5>심해로부터의 부활</h5><p>무대 드럼 뒤, 안경을 벗고 포효하는 순간. 배경 스크린에 심해P 시절 뮤비의 심해 영상이 흐르고, 관객이 술렁인다 — “설마”.</p></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <div class="card label-card chemi" style="margin-top:34px">
+    <span class="tab">CROSS STORY · 밴드를 넘는 관계도</span>
+    <ul>
+      <li><b>히나타 × 레이라</b> — 소꿉친구이자 라이벌. 얼어붙은 첫 무대의 목격자. 합동 라이브 이벤트의 메인 떡밥.</li>
+      <li><b>레이카 × 세라프</b> — 빼앗긴 목소리와 그 복제. 메인 스토리 최종장의 대립축.</li>
+      <li><b>레이카 × 칸나</b> — 심해P의 열혈 팬과 정체를 숨긴 본인. 코미디와 감동을 오가는 서브플롯.</li>
+      <li><b>유키 × 마리카</b> — 에테르노 임원가 딸 × 협력사 후계자. “집안을 배신한 아이들” 동맹.</li>
+      <li><b>마치 × 스이</b> — 양 밴드 막내 드러머. 말없이 리듬으로만 대화하는 기묘한 우정.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ───────────────────────── 4. 코어 게임플레이 ───────────────────────── -->
+<section>
+  <div class="sec-head"><span class="sec-num">04</span><h2>코어 게임플레이 <small>GAMEPLAY</small></h2></div>
+
+  <div class="card label-card gold">
+    <span class="tab">방향 전환 노트</span>
+    <p>초기 프로토타입은 세로형이었으나, <b class="hl">컨셉포토(16:9)가 핵심 보상이 된 시점에서 가로형으로 확정</b>한다. 배경 사진이 화면을 가득 채우는 것이 이 게임의 정체성이므로, 사진이 잘리는 세로형은 기획 의도와 충돌한다. 레인은 화면 중앙에 반투명으로 배치해 배경 감상권을 보장한다.</p>
+  </div>
+
+  <div class="mock" role="img" aria-label="가로형 플레이 화면 목업: 컨셉포토 배경 위 중앙 4레인, 좌측 캐릭터 컷인 존">
+    <div class="bg-label">BG = 센터 멤버의 컨셉포토 (EPIC)</div>
+    <div class="combo">128<small>COMBO</small></div>
+    <div class="lanes"><i></i><i></i><i></i><i></i></div>
+    <div class="judge"></div>
+    <div class="note" style="left:41%;top:30%"></div>
+    <div class="note m" style="left:51%;top:48%"></div>
+    <div class="note" style="left:46%;top:64%"></div>
+    <div class="char">센터 멤버<br>컷인 존</div>
+    <div class="cutin">완전 럭키비키잖아☆</div>
+  </div>
+  <p class="mock-note">배경 컨셉포토는 딤 처리(40~60%, 설정 가능) 위에 레인을 얹는다. 콤보가 쌓일수록 딤이 옅어지며 사진이 선명해지는 연출 = “도키메키가 무대를 밝힌다”는 세계관의 게임플레이 번역.</p>
+
+  <div class="tbl-wrap card" style="margin-top:18px">
+    <table>
+      <tr><th>요소</th><th>사양</th></tr>
+      <tr><td><b>레인 / 노트</b></td><td>4레인 낙하식. v1은 탭 노트만, v2에서 롱노트·플릭 추가. 입력은 터치 4분할 + 키보드 D·F·J·K.</td></tr>
+      <tr><td><b>판정</b></td><td class="num">PERFECT ±60ms · GREAT ±115ms · GOOD ±180ms · MISS. 판정 표시는 핑크×민트 그라데이션 타이포.</td></tr>
+      <tr><td><b>스코어</b></td><td class="num">이론치 1,000,000점. PERFECT 100% / GREAT 70% / GOOD 40%. 랭크 S ≥95% · A ≥88% · B ≥75% · C.</td></tr>
+      <tr><td><b>센터 시스템</b></td><td>라이브 시작 전 <b>센터 멤버 1명</b> 선택 → 배경 = 그 멤버의 해금된 컨셉포토 중 선택, 컷인·대사·결과 리액션도 전부 그 멤버로.</td></tr>
+      <tr><td><b>컷인</b></td><td>30/60/100콤보 마일스톤에 센터 멤버 컷인 + 전용 대사. 풀콤보 시 전용 연출(멤버별 1종).</td></tr>
+      <tr><td><b>결과 리액션</b></td><td>랭크별 표정 차분: S=환호 / A·B=미소 / C=위로(“다음엔 같이 더 잘하자”). 못해도 최애가 다정한 게임.</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ───────────────────────── 5. 수집 & 성장 ───────────────────────── -->
+<section>
+  <div class="sec-head"><span class="sec-num">05</span><h2>수집 & 성장 <small>COLLECTION</small></h2></div>
+
+  <div class="card">
+    <p class="lead"><b class="hl-m">“스카우트 → 각성 → 컨셉포토 해금”</b>이 성장의 전부다. 스탯 인플레이션 대신 <b>보고 싶은 사진</b>을 성장 보상의 중심에 둔다.</p>
+  </div>
+
+  <div class="tbl-wrap card">
+    <table>
+      <tr><th>단계</th><th>조건</th><th>보상</th></tr>
+      <tr><td><b>획득 ★1</b></td><td>스카우트(가챠) 또는 스토리 지급 (밴드 리더 3명은 스토리 무료 지급)</td><td><span class="chip-inline n">NORMAL</span> 컨셉포토 + 센터 선택 가능 + 기본 컷인 대사 3종</td></tr>
+      <tr><td><b>각성 ★2</b></td><td>팬레터 ×30 + 라이브 경험치 Lv.20</td><td><span class="chip-inline r">RARE</span> 컨셉포토 + 스코어 보너스 +3% + 컷인 대사 3종 추가</td></tr>
+      <tr><td><b>각성 ★3</b></td><td>팬레터 ×80 + Lv.40 + 해당 멤버 센터로 풀콤보 1회</td><td><span class="chip-inline e">EPIC</span> 컨셉포토 + 전용 풀콤보 연출 + 앨범에 비하인드 스토리 해금</td></tr>
+    </table>
+  </div>
+  <p class="sub" style="margin-top:10px">★3 조건에 “풀콤보 1회”를 넣어 <b>수집(과금·재화)만으로는 EPIC에 도달할 수 없게</b> 한다 — 최애의 가장 아름다운 사진은 반드시 내 손으로 딴다는 설계. 이게 이 게임의 자존심.</p>
+
+  <div class="lore-grid" style="margin-top:18px">
+    <div class="lore"><h3>재화 3종</h3><p><b>네온 코인</b>(라이브 보상, 레벨업 재료) · <b>도키메키 프리즘</b>(미션·풀콤보 보상, 스카우트 티켓 교환) · <b>팬레터</b>(중복 캐릭터 변환 + 데일리 미션, 각성 재료). 프로토타입 단계에서는 전부 무과금 인게임 재화.</p></div>
+    <div class="lore"><h3>스카우트 연출</h3><p>라이브하우스 게시판에 전단지가 붙는 연출 → 벗기면 <b>사인이 적힌 포스터</b>로 변하며 멤버 등장. 등급 암시는 전단지 테이프 색(회색→민트→핑크)으로. 가챠임을 세계관(공연 섭외) 안에 녹인다.</p></div>
+    <div class="lore"><h3>앨범 (도감)</h3><p>해금한 컨셉포토를 폴라로이드 벽으로 전시. 사진마다 1줄 캡션(획득 시)과 비하인드 스토리(★3 해금). 수집률 %가 수조의 해파리 수와 연동 — 도감 완성 = 수조 만원.</p></div>
+    <div class="lore"><h3>홈 화면 = 쿠라게 창고</h3><p>수조 앞에 최애 멤버가 서 있는 대기 화면. 탭하면 반응 대사. 계정 성장(총 도키메키)에 따라 수조의 빛 해파리가 늘어나는 롱텀 시각 보상.</p></div>
+  </div>
+</section>
+
+<!-- ───────────────────────── 6. 음악 조달 ───────────────────────── -->
+<section>
+  <div class="sec-head"><span class="sec-num">06</span><h2>음악 조달 <small>MUSIC PIPELINE</small></h2></div>
+  <div class="tbl-wrap card">
+    <table>
+      <tr><th>방식</th><th>장점</th><th>단점</th><th>적합 단계</th></tr>
+      <tr><td><b>Web Audio 신스 자작</b><br><span class="sub">코드로 곡을 합성</span></td><td>권리 100% 클리어 · 노트와 싱크 완벽 · 파일 0KB</td><td>밴드 사운드(기타·보컬) 표현 한계</td><td>프로토타입</td></tr>
+      <tr><td><b>AI 작곡 (Suno 등)</b><br><span class="sub">밴드별 프롬프트로 생성</span></td><td>진짜 밴드 사운드 + 보컬 · 밴드별 장르 차별화 가능 · 곡당 몇 분 소요</td><td>유료 플랜이어야 상업 이용 가능 · mp3라 채보 제작 도구 필요</td><td>정식 버전</td></tr>
+      <tr><td><b>일본 프리 BGM</b><br><span class="sub">DOVA-SYNDROME 등</span></td><td>무료 · 오타쿠 감성 곡 다수</td><td>곡별 라이선스 확인 필요 · “우리 밴드의 곡” 서사가 약해짐</td><td>보조</td></tr>
+    </table>
+  </div>
+  <div class="reco">
+    <div class="r-tag">RECOMMENDED</div>
+    <p><b>2단계 파이프라인:</b> 프로토타입은 Web Audio 신스 자작곡으로 게임 감각(판정·연출)을 먼저 완성하고, 정식 곡은 <b>Suno로 밴드별 생성</b>(클리오네=팝록 / 네온테트라=일렉트로 / 노크틸루카=심포닉록). mp3 채보 작업을 위한 <b>간이 채보 에디터</b>(곡 재생하며 키 입력을 타임스탬프로 기록 → JSON 내보내기)를 함께 개발한다. 채보 에디터는 반나절 분량의 작업.</p>
+  </div>
+</section>
+
+<!-- ───────────────────────── 7. 아트 에셋 ───────────────────────── -->
+<section>
+  <div class="sec-head"><span class="sec-num">07</span><h2>아트 에셋 제작 리스트 <small>ASSET SPEC</small></h2></div>
+  <p class="sub">이미지 생성 시 전 캐릭터 공통 스타일 앵커: <b>“파스텔 핑크×민트 팔레트, 셀 셰이딩 애니메이션 일러스트, 데코 스티커 감성”</b>. 캐릭터별 시드/레퍼런스를 고정해 3장의 사진에서 동일 인물성이 유지되는 것이 최우선 품질 기준.</p>
+  <div class="tbl-wrap card">
+    <table>
+      <tr><th>에셋</th><th>규격</th><th>수량</th><th>용도</th><th>단계</th></tr>
+      <tr><td><b>컨셉포토</b></td><td class="num">16:9 · 2560×1440 · JPG/WebP</td><td class="num">36장 (12명 × N/R/E)</td><td>라이브 배경 · 앨범 · 각성 보상</td><td>밴드별 순차</td></tr>
+      <tr><td><b>캐릭터 전신 입상</b></td><td class="num">투명 PNG · 세로 2000px+</td><td class="num">12장</td><td>홈 화면 · 스카우트 연출 · 결과 화면</td><td>밴드별 순차</td></tr>
+      <tr><td><b>버스트업 표정 차분</b></td><td class="num">투명 PNG · 800px+ · 3표정(기쁨/열정/위로)</td><td class="num">36장</td><td>컷인 · 결과 리액션</td><td>밴드별 순차</td></tr>
+      <tr><td><b>앨범아트</b></td><td class="num">1:1 · 1024×1024</td><td class="num">3장 (밴드당 1곡)</td><td>곡 선택 화면</td><td>Phase 1~</td></tr>
+      <tr><td><b>밴드 로고</b></td><td class="num">투명 PNG 또는 SVG</td><td class="num">3종</td><td>곡 선택 · 밴드 화면 · 스카우트 배너</td><td>Phase 1~</td></tr>
+      <tr><td><b>홈 배경 (쿠라게 창고)</b></td><td class="num">16:9 · 2560×1440</td><td class="num">1장 (+해파리 단계 차분)</td><td>홈 화면</td><td>Phase 2</td></tr>
+    </table>
+  </div>
+  <p class="sub" style="margin-top:10px">Phase 1 최소 세트 = <b>클리오네☆팝! 4명분</b>: 컨셉포토 12장 + 전신 4장 + 표정 12장 + 앨범아트 1장 + 로고 1종. 이 29장만 있으면 수직 슬라이스가 완성된다.</p>
+</section>
+
+<!-- ───────────────────────── 8. 로드맵 ───────────────────────── -->
+<section>
+  <div class="sec-head"><span class="sec-num">08</span><h2>개발 로드맵 <small>ROADMAP</small></h2></div>
+  <div class="card roadmap">
+    <div class="phase">
+      <div class="ph">PHASE 1<small>수직 슬라이스</small></div>
+      <ul>
+        <li>가로 16:9 기준으로 리듬 코어 재작성 (4레인 · 판정 · 콤보 · 컷인 · 결과)</li>
+        <li>컨셉포토 배경 시스템 + 콤보에 따른 딤 완화 연출</li>
+        <li>클리오네☆팝! 4인 + 「하트비트 퍼레이드」 1곡 (신스 자작)</li>
+        <li>센터 선택 → 배경/컷인/결과 리액션 연동</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="ph">PHASE 2<small>수집 루프</small></div>
+      <ul>
+        <li>재화 3종 + 스카우트(포스터 연출) + 각성 ★1→★3 + 앨범</li>
+        <li>네온테트라 4인 + 「오버클록 러버즈」 (Suno 파이프라인 + 채보 에디터 가동)</li>
+        <li>홈 화면(쿠라게 창고) + 수조 해파리 성장</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="ph">PHASE 3<small>세계의 완성</small></div>
+      <ul>
+        <li>노크틸루카 4인 + 「심해 녹턴」 + 밴드별 곡 추가 (밴드당 2~3곡)</li>
+        <li>스토리 모드 (챕터별 대화 신 · 세라프 메인 스토리)</li>
+        <li>PWA 설치 · 기록 저장 · 랭킹 · 합동 라이브 이벤트</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────── 9. 결정 대기 ───────────────────────── -->
+<section>
+  <div class="sec-head"><span class="sec-num">09</span><h2>지원님 결정 대기 항목 <small>OPEN QUESTIONS</small></h2></div>
+  <div class="open-q">
+    <div class="q"><b>① 타이틀 확정</b>제안: 『마요나카☆아쿠아비트』. 대안: 『쿠라게 비트!』(귀여움 극대화), 『도키메키 앰프!』(밴드감 강조). 로고 디자인 방향과 함께 결정.</div>
+    <div class="q"><b>② 캐릭터 비주얼 검수 프로세스</b>12명의 외형 스펙(3장)을 기준으로 지원님이 이미지를 생성 → 밴드당 대표 1명씩 먼저 뽑아 스타일 앵커를 확정한 뒤 나머지를 양산하는 순서를 추천.</div>
+    <div class="q"><b>③ Suno 플랜</b>정식 곡 단계에서 유료 플랜(상업 이용권) 결제 여부. 프로토타입 단계에서는 불필요.</div>
+    <div class="q"><b>④ 스토리 분량</b>Phase 3의 대화 신을 풀 스토리 모드로 갈지, 앨범 캡션+비하인드 텍스트 중심의 라이트 서사로 갈지.</div>
+  </div>
+</section>
+
+<footer>MIDNIGHT AQUA BEAT · GDD v0.1 · 쿠라게 창고 기획실 ⚓</footer>
+
+</div>
